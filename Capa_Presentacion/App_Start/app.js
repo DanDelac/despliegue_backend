@@ -9,8 +9,7 @@ const app = express();
 
 const corsOptions = {
   origin: '*', // o '*' para permitir desde cualquier origen
-  methods: 'GET,PUT,POST,DELETE',
-  credentials: false
+  credentials: true
 };
 
 // Middlewares
