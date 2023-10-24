@@ -17,6 +17,7 @@ app.use("/", employeesRoutes);
 app.use("/citas", citasRoutes );
 
 app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(404).json({ message: "Not found" });
 });
 
