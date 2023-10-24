@@ -8,10 +8,9 @@ import citasRoutes from "../Rutas/citas.routes.js";
 const app = express();
 
 const corsOptions = {
-  origin: '*', // o '*' para permitir desde cualquier origen
+  origin: 'http://127.0.0.1:5500', // o '*' para permitir desde cualquier origen
   methods: 'GET,PUT,POST,DELETE',
-  allowedHeaders: 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
-  credentials: true
+  allowedHeaders: 'Content-Type,Authorization',
 };
 
 // Middlewares
