@@ -53,7 +53,7 @@ export const deleteCita = async (req, res) => {
 export const listCita = async (req, res) => {
   try {
     const respuesta = await objCita.listCita();
-    res.json(respuesta);
+    res.json(respuesta.rows);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP" });
   }
