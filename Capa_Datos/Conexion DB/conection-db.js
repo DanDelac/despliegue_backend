@@ -13,4 +13,9 @@ export const pool = createPool({
   password: DB_PASSWORD,
   port: DB_PORT,
   database: DB_DATABASE,
+  // ssl: {
+  //   ca: fs.readFileSync('"C:\Users\Alumno\Documents\Nueva carpeta\despliegue_backend\Capa_Datos\Conexion DB\DigiCertGlobalRootCA.crt.pem"'), // Certificado de CA
+  //   key: fs.readFileSync('"C:\Users\Alumno\Documents\Nueva carpeta\despliegue_backend\Capa_Datos\Conexion DB\DigiCertGlobalRootCA.crt.pem"'), // Clave privada
+  //   cert: fs.readFileSync('"C:\Users\Alumno\Documents\Nueva carpeta\despliegue_backend\Capa_Datos\Conexion DB\DigiCertGlobalRootCA.crt.pem"'), // Certificado del cliente
+  // },
 });
