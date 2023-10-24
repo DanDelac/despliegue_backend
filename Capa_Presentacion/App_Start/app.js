@@ -7,8 +7,14 @@ import citasRoutes from "../Rutas/citas.routes.js";
 
 const app = express();
 
+const corsOptions = {
+  origin: '*', // o '*' para permitir desde cualquier origen
+  methods: 'GET,PUT,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+};
+
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 
@@ -17,7 +23,6 @@ app.use("/", employeesRoutes);
 app.use("/citas", citasRoutes );
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(404).json({ message: "Not found" });
 });
 
