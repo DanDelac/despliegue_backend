@@ -11,7 +11,7 @@ const corsOptions = {
   origin: 'http://127.0.0.1:5500', // o '*' para permitir desde cualquier origen
   methods: 'GET,PUT,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
-  credentials: true
+  credentials: false
 };
 
 // Middlewares
