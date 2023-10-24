@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 
 import employeesRoutes from "../Rutas/employees.routes.js";
 import citasRoutes from "../Rutas/citas.routes.js";
@@ -14,8 +15,9 @@ app.use(express.json());
 app.use("/", employeesRoutes);
 app.use("/citas", citasRoutes );
 
-//Cours
-app.enableCors();
+// Habilitar el middleware CORS
+app.use(cors());
+
 app.use((req, res, next) => {
   res.status(404).json({ message: "Not found" });
 });
