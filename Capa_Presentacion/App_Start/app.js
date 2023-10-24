@@ -8,7 +8,7 @@ import citasRoutes from "../Rutas/citas.routes.js";
 const app = express();
 
 // Middlewares
-app.use(cors()); //Habilitar CORS
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
