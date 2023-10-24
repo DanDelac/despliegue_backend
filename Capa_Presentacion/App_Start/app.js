@@ -8,7 +8,7 @@ import citasRoutes from "../Rutas/citas.routes.js";
 const app = express();
 
 const corsOptions = {
-  origin: '*', // o '*' para permitir desde cualquier origen
+  origin: true, // o '*' para permitir desde cualquier origen
   credentials: true
 };
 
