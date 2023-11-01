@@ -13,7 +13,7 @@ class CD_Cita {
             );
         } catch (error) {
             message = "Algo salió mal en CD";
-            result.insertId = 0;
+            result.affectedRows = 0;
         }
         return { message: message, affectedRows: result.affectedRows };
     }
@@ -21,7 +21,7 @@ class CD_Cita {
 
     //ACTUALIZAR
     async updateCita(idCita, medicoId, estado, tratamiento, fecha, hora) {
-        var message = "";
+        var message = "La cita se actualizó correctamente";
         var result;
 
         try {
@@ -39,7 +39,7 @@ class CD_Cita {
 
     //ELIMINAR
     async deleteCita(idCita) {
-        var message = "";
+        var message = "La cita se eliminó correctamente";
         var result;
         try {
             [result] = await pool.query("call eliminar_cita (?);", [idCita]);
