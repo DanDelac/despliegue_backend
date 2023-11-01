@@ -56,7 +56,7 @@ class CD_Cita {
         var rows;
         try {
             // codigo asincorno, consulta sql listar empleados
-            [[[rows]]] = await pool.query("call listar_cita();");
+            [[rows]] = await pool.query("call listar_cita();");
         } catch (error) {
             message = "Algo salió mal en CD";
             rows = [];
