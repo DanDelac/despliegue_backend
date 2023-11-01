@@ -3,7 +3,7 @@ class CD_Cita {
 
     // CREAR
     async createCita(pacienteId, medicoId, tratamiento, fecha, hora) {
-        var message = "";
+        var message = "La cita se registro correctamente";
         var result;
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
