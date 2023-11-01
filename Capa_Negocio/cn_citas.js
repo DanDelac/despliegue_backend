@@ -20,6 +20,7 @@ class CN_Cita {
 
         if (!message) {
             return await objCapaDato.createCita(pacienteId, medicoId, tratamiento, fecha, hora);
+            message = "La cita se registro correctamente";
         }
         return { message: message, id: 0 };
     }
