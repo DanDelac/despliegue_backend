@@ -1,19 +1,32 @@
 import { pool } from "./Conexion DB/conection-db.js";
 class CD_Cita {
 
+    //LISTAR
+    async listCita() {
+        var message = "";
+        var rows;
+        try {
+            // codigo asincorno, consulta sql listar empleados
+            [[rows]] = await pool.query("call listar_cita();");
+        } catch (error) {
+            message = "Algo salió mal en CD";
+            rows = [];
+        }
+        return { message: message, rows: rows };
+    }
     // CREAR
-    async createCita(pacienteId, medicoId, tratamiento, fecha, hora) {
-        var message = "La cita se registro correctamente";
+    async createCita( IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado) {
+        var message = "";
         var result;
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
             [result] = await pool.query(
-                "CALL crear_cita(?, ?, ?, ?, ?)",
-                [pacienteId, medicoId, tratamiento, fecha, hora]
+                "CALL crear_cita(?, ?, ?, ?, ?, ?)",
+                [IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado]
             );
         } catch (error) {
             message = "Algo salió mal en CD";
-            result.affectedRows = 0;
+            result.insertId = 0;
         }
         return { message: message, affectedRows: result.affectedRows };
     }
@@ -21,7 +34,7 @@ class CD_Cita {
 
     //ACTUALIZAR
     async updateCita(idCita, medicoId, estado, tratamiento, fecha, hora) {
-        var message = "La cita se actualizó correctamente";
+        var message = "";
         var result;
 
         try {
@@ -39,7 +52,7 @@ class CD_Cita {
 
     //ELIMINAR
     async deleteCita(idCita) {
-        var message = "La cita se eliminó correctamente";
+        var message = "";
         var result;
         try {
             [result] = await pool.query("call eliminar_cita (?);", [idCita]);
@@ -48,20 +61,6 @@ class CD_Cita {
             result.affectedRows = 0;
         }
         return { message: message, affectedRows: result.affectedRows};
-    }
-
-    //LISTAR
-    async listCita() {
-        var message = "";
-        var rows;
-        try {
-            // codigo asincorno, consulta sql listar empleados
-            [[rows]] = await pool.query("call listar_cita();");
-        } catch (error) {
-            message = "Algo salió mal en CD";
-            rows = [];
-        }
-        return { message: message, rows: rows };
     }
 
 }
