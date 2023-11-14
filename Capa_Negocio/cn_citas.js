@@ -1,6 +1,8 @@
 import CD_Cita from "../Capa_Datos/cd_citas.js";
+import CD_Utilidades from "../Capa_Negocio/cn_utilidades.js";
 
 var objCapaDato = new CD_Cita();
+var objUtilidades = new CD_Utilidades();
 
 class CN_Cita {
 
@@ -75,9 +77,13 @@ class CN_Cita {
     }
     //LISTAR CITA
     async listCita() {
-        return await objCapaDato.listCita();
+          var resultado = await objCapaDato.listCita();
+        // citEstado Activo Finalizado cancelado
+        for(var i = 0; i<resultado["rows"].length;i++){
+            resultado["rows"][i]["citEstado"] = objUtilidades.citEstado(resultado["rows"][i]["citEstado"]);
+        }
+        return resultado;
     }
-
 }
 
 export default CN_Cita;
