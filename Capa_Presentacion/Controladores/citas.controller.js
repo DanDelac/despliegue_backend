@@ -26,6 +26,7 @@ export const createCita = async (req, res) => {
 export const updateCita = async (req, res) => {
   try {
     const { IDCita } = req.params;  //const id = req.params.id;
+    console.log("ID: "+typeof(IDCita))
     const {IDMedico, citMotivo, citFecha, citHora, citEstado} = req.body;
 
     const result = await objCita.updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado);
@@ -38,7 +39,7 @@ export const updateCita = async (req, res) => {
 
     // res.json(rows[0]);
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP" });
+    return res.status(500).json({ message: "Algo salió mal en CP - "+ error  });
   }
 };
 
@@ -46,8 +47,8 @@ export const updateCita = async (req, res) => {
 
 export const deleteCita = async (req, res) => {
   try {
-    const { id } = req.params;
-    const result = await objCita.deleteCita(id);
+    const { IDCita } = req.params;
+    const result = await objCita.deleteCita(IDCita);
 
     if (result.affectedRows <= 0) {
       return res.status(404).json({ message: result.message });

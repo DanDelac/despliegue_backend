@@ -38,20 +38,17 @@ class CN_Cita {
         if (!message) {
             return await objCapaDato.createCita(pacienteId, medicoId, tratamiento, fecha, hora);
         }
-        return { message: message, id: 0 };
+        return { message: message, affectedRows: result.affectedRows = 0 };
     }
 
     // ACTUALIZAR CITA
     async updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         // Validaciones
         var message = "";
+        if (typeof IDMedico !== "number" || typeof citMotivo !== "string" ||
+            typeof citFecha !== "string" || typeof citHora !== "string" || typeof citEstado !== "string") {
 
-        if (typeof IDCita !== "number" || typeof IDMedico !== "number" || typeof citMotivo !== "string" ||
-            typeof citFecha !== "string" || typeof citHora !== "string" || typeof citEstado !== "number") {
-
-            if (typeof IDCita !== "number") {
-                message = "Error en el tipo de dato ingresado, el ID de la cita debe ser un número";
-            } else if (typeof IDMedico !== "number") {
+            if (typeof IDMedico !== "number") {
                 message = "Error en el tipo de dato ingresado, el ID del médico debe ser un número";
             } else if (typeof citMotivo !== "string") {
                 message = "Error en el tipo de dato ingresado, el tratamiento debe ser un texto";
@@ -59,19 +56,18 @@ class CN_Cita {
                 message = "Error en el tipo de dato ingresado, la fecha debe ser un texto";
             } else if (typeof citHora !== "string") {
                 message = "Error en el tipo de dato ingresado, la hora debe ser un texto";
-            } else if (typeof citEstado !== "number") {
-                message = "Error en el tipo de dato ingresado, el estado debe ser un número";
+            } else if (typeof citEstado !== "string") {
+                message = "Error en el tipo de dato ingresado, el estado debe ser un texto";
             } else {
                 if (!medicoId || !estado || !tratamiento || !fecha || !hora) {
                     message = "Todos los campos son obligatorios";
                 }
             }
-
-            if (!message) {
-                return await objCapaDato.updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado);
-            }
-            return { message: message, id: 0 };
         }
+        if (!message) {
+            return await objCapaDato.updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado);
+        }
+        return { message: message, affectedRows: result.affectedRows = 0 };
     }
     //ELIMINAR
     async deleteCita(idCita) {
