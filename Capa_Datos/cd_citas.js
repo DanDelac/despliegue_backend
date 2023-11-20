@@ -17,7 +17,7 @@ class CD_Cita {
     // CREAR
     async createCita( IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         var message = "";
-        var result;
+        var result = { affectedRows: 0 };
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
             [result] = await pool.query(
@@ -25,8 +25,8 @@ class CD_Cita {
                 [IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado]
             );
         } catch (error) {
-            message = "Algo salió mal en CD";
-            result.insertId = 0;
+            message = "Algo salió mal en CD, Servidor: "+ error.message;
+            result.affectedRows = 0;
         }
         return { message: message, affectedRows: result.affectedRows };
     }
@@ -53,7 +53,7 @@ class CD_Cita {
     //ELIMINAR
     async deleteCita(idCita) {
         var message = "";
-        var result;
+        var result = { affectedRows: 0 };
         try {
             [result] = await pool.query("call eliminar_cita (?);", [idCita]);
         } catch (error) {
