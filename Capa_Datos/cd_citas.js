@@ -15,14 +15,14 @@ class CD_Cita {
         return { message: message, rows: rows };
     }
     // CREAR
-    async createCita( IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado) {
+    async createCita( IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         var message = "";
         var result;
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
             [result] = await pool.query(
                 "CALL crear_cita(?, ?, ?, ?, ?, ?)",
-                [IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado]
+                [IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado]
             );
         } catch (error) {
             message = "Algo salió mal en CD";

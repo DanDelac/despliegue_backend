@@ -7,11 +7,11 @@ var objUtilidades = new CD_Utilidades();
 class CN_Cita {
 
     // CREAR CITA
-    async createCita( IDHistoria, IDMedico, citMotivo, citEstado) {
+    async createCita(IDHistoria, IDMedico, citMotivo, citEstado) {
         // Validaciones
         var message = "";
 
-        if (typeof IDHistoria !== "number" || typeof IDMedico !== "number" || typeof citMotivo !== "string" 
+        if (typeof IDHistoria !== "number" || typeof IDMedico !== "number" || typeof citMotivo !== "string"
             || typeof citEstado !== "number") {
             if (typeof IDHistoria !== "number") {
                 message = "Error en el tipo de dato ingresado, el ID del paciente debe ser un número";
@@ -42,34 +42,36 @@ class CN_Cita {
     }
 
     // ACTUALIZAR CITA
-    async updateCita(idCita, medicoId, estado, tratamiento, fecha, hora) {
+    async updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         // Validaciones
         var message = "";
 
-        if (typeof medicoId !== "number" || typeof estado !== "number" ||
-            typeof tratamiento !== "string" || typeof fecha !== "string" ||
-            typeof hora !== "string") {
-            if (typeof medicoId !== "number") {
-                message = "Error en el tipo de dato ingresado, el ID del médico debe ser un número";
-            } else if (typeof estado !== "number") {
-                message = "Error en el tipo de dato ingresado, el estado debe ser un número";
-            } else if (typeof tratamiento !== "string") {
-                message = "Error en el tipo de dato ingresado, el tratamiento debe ser un texto";
-            } else if (typeof fecha !== "string") {
-                message = "Error en el tipo de dato ingresado, la fecha debe ser un texto";
-            } else if (typeof hora !== "string") {
-                message = "Error en el tipo de dato ingresado, la hora debe ser un texto";
-            }
-        } else {
-            if (!medicoId || !estado || !tratamiento || !fecha || !hora) {
-                message = "Todos los campos son obligatorios";
-            }
-        }
+        if (typeof IDCita !== "number" || typeof IDMedico !== "number" || typeof citMotivo !== "string" ||
+            typeof citFecha !== "string" || typeof citHora !== "string" || typeof citEstado !== "number") {
 
-        if (!message) {
-            return await objCapaDato.updateCita(idCita, medicoId, estado, tratamiento, fecha, hora);
+            if (typeof IDCita !== "number") {
+                message = "Error en el tipo de dato ingresado, el ID de la cita debe ser un número";
+            } else if (typeof IDMedico !== "number") {
+                message = "Error en el tipo de dato ingresado, el ID del médico debe ser un número";
+            } else if (typeof citMotivo !== "string") {
+                message = "Error en el tipo de dato ingresado, el tratamiento debe ser un texto";
+            } else if (typeof citFecha !== "string") {
+                message = "Error en el tipo de dato ingresado, la fecha debe ser un texto";
+            } else if (typeof citHora !== "string") {
+                message = "Error en el tipo de dato ingresado, la hora debe ser un texto";
+            } else if (typeof citEstado !== "number") {
+                message = "Error en el tipo de dato ingresado, el estado debe ser un número";
+            } else {
+                if (!medicoId || !estado || !tratamiento || !fecha || !hora) {
+                    message = "Todos los campos son obligatorios";
+                }
+            }
+
+            if (!message) {
+                return await objCapaDato.updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado);
+            }
+            return { message: message, id: 0 };
         }
-        return { message: message, id: 0 };
     }
     //ELIMINAR
     async deleteCita(idCita) {
@@ -77,9 +79,25 @@ class CN_Cita {
     }
     //LISTAR CITA
     async listCita() {
-          var resultado = await objCapaDato.listCita();
+        var resultado = await objCapaDato.listCita();
+
         // citEstado Activo Finalizado cancelado
-        for(var i = 0; i<resultado["rows"].length;i++){
+        for (var i = 0; i < resultado["rows"].length; i++) {
+            // Verificar si la fecha es una cadena
+            var fechaOriginal = resultado["rows"][i]["citFecha"];
+            var fechaSinTiempo;
+
+            if (typeof fechaOriginal === "string") {
+                fechaSinTiempo = fechaOriginal.split("T")[0];
+            } else if (fechaOriginal instanceof Date) {
+                // Si ya es un objeto Date, formatear la fecha
+                var dia = ("0" + fechaOriginal.getDate()).slice(-2);
+                var mes = ("0" + (fechaOriginal.getMonth() + 1)).slice(-2);
+                var anio = fechaOriginal.getFullYear();
+                fechaSinTiempo = anio + "-" + mes + "-" + dia;
+            }
+
+            resultado["rows"][i]["citFecha"] = fechaSinTiempo;
             resultado["rows"][i]["citEstado"] = objUtilidades.citEstado(resultado["rows"][i]["citEstado"]);
         }
         return resultado;

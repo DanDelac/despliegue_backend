@@ -25,10 +25,10 @@ export const createCita = async (req, res) => {
 //ACTUALIZAR CITA
 export const updateCita = async (req, res) => {
   try {
-    const { id } = req.params;  //const id = req.params.id;
-    const { medicoId, estado, tratamiento, fecha, hora } = req.body;
+    const { IDCita } = req.params;  //const id = req.params.id;
+    const {IDMedico, citMotivo, citFecha, citHora, citEstado} = req.body;
 
-    const result = await objCita.updateCita(id, medicoId, estado, tratamiento, fecha, hora);
+    const result = await objCita.updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado);
 
     if (result.affectedRows === 0)
       return res.status(404).json({ message: result.message });
