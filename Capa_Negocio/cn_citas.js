@@ -7,7 +7,7 @@ var objUtilidades = new CD_Utilidades();
 class CN_Cita {
 
     // CREAR CITA
-    async createCita(IDHistoria, IDMedico, citMotivo, citEstado) {
+    async createCita(IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         // Validaciones
         var message = "";
 
@@ -19,24 +19,32 @@ class CN_Cita {
                 message = "Error en el tipo de dato ingresado, el ID del médico debe ser un número";
             } else if (typeof citMotivo !== "string") {
                 message = "Error en el tipo de dato ingresado, el tratamiento debe ser un texto";
-            } else if (typeof citEstado !== "number") {
+            } else if (typeof citFecha !== "string") {
+                message = "Error en el tipo de dato ingresado, la fecha debe ser un texto";
+            } else if (typeof citHora !== "string") {
+                message = "Error en el tipo de dato ingresado, la hora debe ser un texto";
+            } else if (typeof citEstado !== "string") {
                 message = "Error en el tipo de dato ingresado, el estado debe ser un numero";
             }
         } else {
-            IDHistoria, IDMedico, citMotivo, citEstado
-            if (!IDHistoria || IDHistoria.trim().length === 0) {
+            if (!IDHistoria || IDHistoria == 0) {
                 Mensaje = "Debe seleccionar algun paciente";
-            } else if (!IDMedico || IDMedico.trim().length === 0) {
+            } else if (!IDMedico || IDMedico == 0) {
                 Mensaje = "Debe seleccionar algun medico";
             } else if (!citMotivo || citMotivo.trim().length === 0) {
                 Mensaje = "El campo motivo no puede quedar vacío";
-            } else if (!citEstado || citEstado == 0) {
+            } else if (!citFecha || citFecha.trim().length === 0) {
+                Mensaje = "El campo motivo no puede quedar vacío";
+            } else if (!citHora || citHora.trim().length === 0) {
+                Mensaje = "El campo motivo no puede quedar vacío";
+            }
+            else if (!citEstado || citEstado == 0) {
                 Mensaje = "El campo estado no puede quedar vacío";
             }
         }
 
         if (!message) {
-            return await objCapaDato.createCita(pacienteId, medicoId, tratamiento, fecha, hora);
+            return await objCapaDato.createCita(IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado);
         }
         return { message: message, affectedRows: result.affectedRows = 0 };
     }
