@@ -35,7 +35,7 @@ class CD_Cita {
     //ACTUALIZAR
     async updateCita(idCita, medicoId, estado, tratamiento, fecha, hora) {
         var message = "";
-        var result;
+        var result = { affectedRows: 0 };
 
         try {
             [result] = await pool.query(
@@ -43,7 +43,7 @@ class CD_Cita {
             [ idCita,medicoId, estado, tratamiento, fecha, hora]);
 
         } catch (error) {
-            message = "Algo salió mal en CD";
+            message = "Algo salió mal en CD, Servidor: "+ error.message;
             result.affectedRows = 0;
         }
 
