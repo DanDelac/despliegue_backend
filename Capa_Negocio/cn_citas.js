@@ -98,7 +98,7 @@ class CN_Cita {
                 var dia = ("0" + fechaOriginal.getDate()).slice(-2);
                 var mes = ("0" + (fechaOriginal.getMonth() + 1)).slice(-2);
                 var anio = fechaOriginal.getFullYear();
-                fechaSinTiempo = anio + "-" + mes + "-" + dia;
+                fechaSinTiempo = dia + "-" + mes + "-" + anio;
             }
 
             resultado["rows"][i]["citFecha"] = fechaSinTiempo;
