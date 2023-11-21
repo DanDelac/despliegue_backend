@@ -11,8 +11,7 @@ const app = express();
 const corsOptions = {
   origin: '*', // o '*' para permitir desde cualquier origen
   methods: 'GET,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-  
+  allowedHeaders: 'Content-Type,Authorization'
 };
 
 // Middlewares
