@@ -102,7 +102,7 @@ class CN_Cita {
             }
 
             resultado["rows"][i]["citFecha"] = fechaSinTiempo;
-            resultado["rows"][i]["citEstado"] = objUtilidades.citEstado(resultado["rows"][i]["citEstado"]);
+            // resultado["rows"][i]["citEstado"] = objUtilidades.citEstado(resultado["rows"][i]["citEstado"]);
         }
         return resultado;
     }
