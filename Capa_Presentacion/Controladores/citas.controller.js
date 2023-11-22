@@ -39,12 +39,11 @@ export const updateCita = async (req, res) => {
 
     // res.json(rows[0]);
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP - " + error });
+    return res.status(500).json({ message: "Algo salió mal en CP - ", error: error.message });
   }
 };
 
 //ELIMINAR
-
 export const deleteCita = async (req, res) => {
   try {
     const { IDCita } = req.params;
@@ -55,7 +54,7 @@ export const deleteCita = async (req, res) => {
     }
     res.status(204).json(result);
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP" });
+    return res.status(500).json({ message: "Algo salió mal en CP - ", error: error.message });
   }
 };
 

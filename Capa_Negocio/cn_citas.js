@@ -8,7 +8,6 @@ class CN_Cita {
 
     // CREAR CITA
     async createCita(IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado) {
-        // Validaciones
         var message = "";
         var result = { affectedRows: 0 };
 
@@ -52,8 +51,9 @@ class CN_Cita {
 
     // ACTUALIZAR CITA
     async updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado) {
-        // Validaciones
         var message = "";
+        var result = { affectedRows: 0 };
+        
         if (typeof IDMedico !== "number" || typeof citMotivo !== "string" ||
             typeof citFecha !== "string" || typeof citHora !== "string" || typeof citEstado !== "string") {
 
