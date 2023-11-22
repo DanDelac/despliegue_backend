@@ -10,6 +10,7 @@ class CN_Cita {
     async createCita(IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         // Validaciones
         var message = "";
+        var result = { affectedRows: 0 };
 
         if (typeof IDHistoria !== "number" || typeof IDMedico !== "number" || typeof citMotivo !== "string"
             || typeof citEstado !== "number") {
