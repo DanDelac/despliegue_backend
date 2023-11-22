@@ -31,7 +31,6 @@ class CD_Cita {
         return { message: message, affectedRows: result.affectedRows };
     }
 
-
     //ACTUALIZAR
     async updateCita(idCita, medicoId, estado, tratamiento, fecha, hora) {
         var message = "";

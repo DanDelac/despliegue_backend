@@ -35,9 +35,6 @@ export const updateCita = async (req, res) => {
       return res.status(404).json({ message: result.message });
 
     res.json(result);
-    // const [rows] = await pool.query("SELECT * FROM Cita WHERE id = ?", [id]);
-
-    // res.json(rows[0]);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - ", error: error.message });
   }
