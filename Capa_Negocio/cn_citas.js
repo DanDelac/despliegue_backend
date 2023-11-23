@@ -34,9 +34,9 @@ class CN_Cita {
             } else if (!citMotivo || citMotivo.trim().length === 0) {
                 message = "El campo motivo no puede quedar vacío";
             } else if (!citFecha || citFecha.trim().length === 0) {
-                message = "El campo motivo no puede quedar vacío";
+                message = "El campo fecha no puede quedar vacío";
             } else if (!citHora || citHora.trim().length === 0) {
-                message = "El campo motivo no puede quedar vacío";
+                message = "El campo hora no puede quedar vacío";
             }
             else if (!citEstado || citEstado == 0) {
                 message = "El campo estado no puede quedar vacío";
