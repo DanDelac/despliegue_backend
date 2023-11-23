@@ -45,7 +45,7 @@ export const deleteCita = async (req, res) => {
     const result = await objCita.deleteCita(IDCita);
 
     if (result.affectedRows <= 0) {
-      return res.status(404).json({ message: result.message });
+      return res.status(201).json({ message: result.message });
     } else{
       return res.status(201).json({ result });
     }
