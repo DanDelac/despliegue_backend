@@ -18,7 +18,7 @@ export const createCita = async (req, res) => {
     const result = await objCita.createCita(IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado);
     res.status(201).json({ result });
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP - ", error: error.message });
+    return res.status(500).json({ message: "Algo salió mal en CP - Error: " + error.message });
   }
 };
 
@@ -34,7 +34,7 @@ export const updateCita = async (req, res) => {
     if (result.affectedRows > 0)
       return res.status(201).json({ result });
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP - ", error: error.message });
+    return res.status(500).json({ message: "Algo salió mal en CP - Error: " + error.message });
   }
 };
 
@@ -50,7 +50,7 @@ export const deleteCita = async (req, res) => {
       return res.status(201).json({ result });
     }
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP - ", error: error.message });
+    return res.status(500).json({ message: "Algo salió mal en CP - Error: " + error.message });
   }
 };
 

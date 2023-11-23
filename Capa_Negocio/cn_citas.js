@@ -28,18 +28,18 @@ class CN_Cita {
             }
         } else {
             if (!IDHistoria || IDHistoria == 0) {
-                Mensaje = "Debe seleccionar algun paciente";
+                message = "Debe seleccionar algun paciente";
             } else if (!IDMedico || IDMedico == 0) {
-                Mensaje = "Debe seleccionar algun medico";
+                message = "Debe seleccionar algun medico";
             } else if (!citMotivo || citMotivo.trim().length === 0) {
-                Mensaje = "El campo motivo no puede quedar vacío";
+                message = "El campo motivo no puede quedar vacío";
             } else if (!citFecha || citFecha.trim().length === 0) {
-                Mensaje = "El campo motivo no puede quedar vacío";
+                message = "El campo motivo no puede quedar vacío";
             } else if (!citHora || citHora.trim().length === 0) {
-                Mensaje = "El campo motivo no puede quedar vacío";
+                message = "El campo motivo no puede quedar vacío";
             }
             else if (!citEstado || citEstado == 0) {
-                Mensaje = "El campo estado no puede quedar vacío";
+                message = "El campo estado no puede quedar vacío";
             }
         }
 
