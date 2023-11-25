@@ -15,20 +15,21 @@ class CD_Cita {
         return { message: message, rows: rows };
     }
     // CREAR
-    async createCita( IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado) {
+    async createCita(IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado) {
         var message = "";
-        var result = { affectedRows: 0 };
+        var result = { affectedRows: 0, row: 0 };
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
-            [result] = await pool.query(
+            [[[result]]] = await pool.query(
                 "CALL crear_cita(?, ?, ?, ?, ?, ?)",
-                [IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado]
+                [IDHistoria, IDMedico, citMotivo, citFecha, citHora, citEstado]
             );
+            result = { affectedRows: 1, row: result }
         } catch (error) {
-            message = "Algo salió mal en CD, Servidor: "+ error.message;
+            message = "Algo salió mal en CD, Servidor: " + error.message;
             result.affectedRows = 0;
         }
-        return { message: message, affectedRows: result.affectedRows };
+        return { message: message, affectedRows: result.affectedRows, row: result.row };//row: 
     }
 
     //ACTUALIZAR
@@ -38,15 +39,15 @@ class CD_Cita {
 
         try {
             [result] = await pool.query(
-            "call editar_cita(?,?,?,?,?,?);",
-            [ idCita,medicoId, estado, tratamiento, fecha, hora]);
+                "call editar_cita(?,?,?,?,?,?);",
+                [idCita, medicoId, estado, tratamiento, fecha, hora]);
 
         } catch (error) {
-            message = "Algo salió mal en CD, Servidor: "+ error.message;
+            message = "Algo salió mal en CD, Servidor: " + error.message;
             result.affectedRows = 0;
         }
 
-        return { message: message, affectedRows: result.affectedRows};
+        return { message: message, affectedRows: result.affectedRows };
     }
 
     //ELIMINAR
@@ -59,7 +60,7 @@ class CD_Cita {
             message = "Algo salió mal en CD";
             result.affectedRows = 0;
         }
-        return { message: message, affectedRows: result.affectedRows};
+        return { message: message, affectedRows: result.affectedRows };
     }
 
 }
