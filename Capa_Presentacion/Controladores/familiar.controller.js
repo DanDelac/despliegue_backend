@@ -1,6 +1,6 @@
-import CNFamiliar from "../../Capa_Negocio/cn_Familiar.js";
+import CN_Familiar from "../../Capa_Negocio/cn_familiar.js";
 
-var objCapaNegocio = new CNFamiliar();
+var objCapaNegocio = new CN_Familiar();
 
 //Listar
 export const listFamiliar = async (req, res) => {
