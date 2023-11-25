@@ -12,7 +12,7 @@ class CN_Cita {
         var result = { affectedRows: 0 };
 
         if (typeof IDHistoria !== "number" || typeof IDMedico !== "number" || typeof citMotivo !== "string"
-            || typeof citEstado !== "number") {
+            || typeof citEstado !== "string") {
             if (typeof IDHistoria !== "number") {
                 message = "Error en el tipo de dato ingresado, el ID del paciente debe ser un número";
             } else if (typeof IDMedico !== "number") {
