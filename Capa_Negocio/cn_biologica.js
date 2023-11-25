@@ -41,11 +41,11 @@ class CN_biologica {
   async updatebiologica(CODIGO, APETITO, DEPOSICION, SED, ORINA, SUENO) {
     // Validaciones
     const mensajesErrores = [
-        this.validarString(APETITO, "APETITO"),
-        this.validarString(DEPOSICION, "DEPOSICION"),
-        this.validarString(SED, "SED"),
-        this.validarString(ORINA, "ORINA"),
-        this.validarString(SUENO, "SUENO"),
+      this.validarString(APETITO, "APETITO"),
+      this.validarString(DEPOSICION, "DEPOSICION"),
+      this.validarString(SED, "SED"),
+      this.validarString(ORINA, "ORINA"),
+      this.validarString(SUENO, "SUENO"),
     ];
 
     // Filtra los mensajes de error que no son nulos
@@ -56,13 +56,13 @@ class CN_biologica {
     }
 
     // Si todas las validaciones son exitosas, procede a la creación
-    return await objCapaDato.updatebiologica( CODIGO, APETITO, DEPOSICION, SED, ORINA, SUENO);
+    return await objCapaDato.updatebiologica(CODIGO, APETITO, DEPOSICION, SED, ORINA, SUENO);
   }
   //ELIMINAR
   async deletebiologica(id) {
-      //filtos - reglas de negocio
+    //filtos - reglas de negocio
 
-      return await objCapaDato.deletebiologica(id);
+    return await objCapaDato.deletebiologica(id);
   }
 }
 
