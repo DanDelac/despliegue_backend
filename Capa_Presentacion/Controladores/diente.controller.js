@@ -7,7 +7,7 @@ export const listdiente = async (req, res) => {
   try {
     const { DNI } = req.params;
     const respuesta = await objCapaNegocio.listdiente(DNI);  // Aquí asumo que listdiente está definido en objCapaDato
-    res.json(respuesta);
+    res.json(respuesta["rows"]);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - " + error });
   }

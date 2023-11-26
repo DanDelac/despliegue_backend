@@ -7,7 +7,7 @@ export const listexextrabucal = async (req, res) => {
   try {
     const { DNI } = req.params;
     const respuesta = await objCapaNegocio.listexextrabucal(DNI);
-    res.json(respuesta);
+    res.json(respuesta["rows"]);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - " + error });
   }

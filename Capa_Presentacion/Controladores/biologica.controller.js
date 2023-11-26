@@ -51,7 +51,6 @@ export const deletebiologica = async (req, res) => {
     }else{
       return res.status(201).json({ result });
     }
-    res.status(204).json(result);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - " + error });
   }
