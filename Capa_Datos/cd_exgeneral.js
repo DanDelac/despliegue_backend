@@ -1,11 +1,11 @@
 import { pool } from "./Conexion DB/conection-db.js";
-class CD_medico {
+class CD_exgeneral {
     //LISTAR
-    async listmedico() {
+    async listexgeneral(DNI) {
         var message = "";
         var rows;
         try {
-            [[rows]] = await pool.query("call listar_medico ();");
+            [[rows]] = await pool.query("call listar_exgeneral (?);",[DNI]);
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;
             rows = [];
@@ -13,13 +13,13 @@ class CD_medico {
         return { message: message, rows: rows };
     }
     // CREAR
-    async createmedico( USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO) {
+    async createexgeneral( DNI, PESO, TALLA, BIOTIPO, PIEL, CABELLO, UNAS, PRESION, PULSO, FRECUENCIA, TEMPERATURA) {
         var message = "";
         var result = { affectedRows: 0 };
         try {
             [[[result]]] = await pool.query(
-                "CALL crear_medico (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [ USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO]
+                "CALL crear_exgeneral (?,?,?,?,?,?,?,?,?,?,?)",
+                [DNI, PESO, TALLA, BIOTIPO, PIEL, CABELLO, UNAS, PRESION, PULSO, FRECUENCIA, TEMPERATURA]
             );
             result = { affectedRows: 1, row: result }
         } catch (error) {
@@ -29,13 +29,13 @@ class CD_medico {
         return { message: message, affectedRows: result.affectedRows, row: result.row };
     }
     // EDITAR
-    async updatemedico(CODIGO, USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO) {
+    async updateexgeneral(CODIGO, PESO, TALLA, BIOTIPO, PIEL, CABELLO, UNAS, PRESION, PULSO, FRECUENCIA, TEMPERATURA) {
         var message = "";
         var result = { affectedRows: 0 };
         try {
             [result] = await pool.query(
-                "CALL editar_medico (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [CODIGO, USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO]
+                "CALL editar_exgeneral (?,?,?,?,?,?,?,?,?,?,?)",
+                [CODIGO, PESO, TALLA, BIOTIPO, PIEL, CABELLO, UNAS, PRESION, PULSO, FRECUENCIA, TEMPERATURA]
             );
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;
@@ -44,11 +44,11 @@ class CD_medico {
         return { message: message, affectedRows: result.affectedRows };
     }
     //ELIMINAR
-    async deletemedico(id) {
+    async deleteexgeneral(id) {
         var message = "";
         var result;
         try {
-            [result] = await pool.query("call eliminar_medico  (?);", [id]);
+            [result] = await pool.query("call eliminar_exgeneral  (?);", [id]);
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;
             result.affectedRows = 0;
@@ -58,5 +58,5 @@ class CD_medico {
 
 }
 
-export default CD_medico;
+export default CD_exgeneral;
 

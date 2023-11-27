@@ -1,11 +1,11 @@
 import { pool } from "./Conexion DB/conection-db.js";
-class CD_medico {
+class CD_detenfermedad {
     //LISTAR
-    async listmedico() {
+    async listdetenfermedad(DNI) {
         var message = "";
         var rows;
         try {
-            [[rows]] = await pool.query("call listar_medico ();");
+            [[rows]] = await pool.query("call listar_detenfermedad (?);",[DNI]);
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;
             rows = [];
@@ -13,13 +13,13 @@ class CD_medico {
         return { message: message, rows: rows };
     }
     // CREAR
-    async createmedico( USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO) {
+    async createdetenfermedad( DNI, ENFERMEDAD, DESC) {
         var message = "";
         var result = { affectedRows: 0 };
         try {
             [[[result]]] = await pool.query(
-                "CALL crear_medico (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [ USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO]
+                "CALL crear_detenfermedad (?,?,?);",
+                [DNI, ENFERMEDAD, DESC]
             );
             result = { affectedRows: 1, row: result }
         } catch (error) {
@@ -29,13 +29,13 @@ class CD_medico {
         return { message: message, affectedRows: result.affectedRows, row: result.row };
     }
     // EDITAR
-    async updatemedico(CODIGO, USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO) {
+    async updatedetenfermedad(CODIGO, ENFERMEDAD, DESC) {
         var message = "";
         var result = { affectedRows: 0 };
         try {
             [result] = await pool.query(
-                "CALL editar_medico (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [CODIGO, USUARIO, NOMBRE, APELLIDO, DNI, DIREC, TELEF, CORREO, SEXO, FECHA, ESPECIALIDAD, CIVIL, CUENTA, CONTRA, ESTADO]
+                "CALL editar_detenfermedad (?,?,?);",
+                [CODIGO, ENFERMEDAD, DESC]
             );
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;
@@ -44,11 +44,11 @@ class CD_medico {
         return { message: message, affectedRows: result.affectedRows };
     }
     //ELIMINAR
-    async deletemedico(id) {
+    async deletedetenfermedad(id) {
         var message = "";
         var result;
         try {
-            [result] = await pool.query("call eliminar_medico  (?);", [id]);
+            [result] = await pool.query("call eliminar_detenfermedad  (?);", [id]);
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;
             result.affectedRows = 0;
@@ -58,5 +58,5 @@ class CD_medico {
 
 }
 
-export default CD_medico;
+export default CD_detenfermedad;
 
