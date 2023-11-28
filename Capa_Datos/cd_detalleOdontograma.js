@@ -15,14 +15,14 @@ class CD_detalleOdontograma {
         return { message: message, rows: rows };
     }
     // CREAR
-    async createDetodont( DNI, tratamiento, cuadrante, diente, sector, estado, notas) {
+    async createDetodont( CODIGO, tratamiento, cuadrante, diente, sector, estado, notas) {
         var message = "";
         var result = { affectedRows: 0 };
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
             [result] = await pool.query(
                 "CALL crear_detalle_odontograma(?, ?, ?, ?, ?, ?,?)",
-                [DNI, tratamiento, cuadrante, diente, sector, estado, notas]
+                [CODIGO, tratamiento, cuadrante, diente, sector, estado, notas]
             );
         } catch (error) {
             message = "Algo salió mal en CD - " +error ;

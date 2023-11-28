@@ -11,10 +11,10 @@ class CN_detalleOdontograma {
     return await objCapaDato.listDetodont(DNI);
   }
   //CREAR
-  async createDetodont(DNI, tratamiento, cuadrante, diente, sector, estado, notas) {
+  async createDetodont(CODIGO, tratamiento, cuadrante, diente, sector, estado, notas) {
     // Validaciones
     const mensajesErrores = [
-      this.validarString(DNI, "DNI"),
+      this.validarString(CODIGO, "CODIGO"),
       this.validarNumero(tratamiento, "tratamiento"),
       this.validarNumero(cuadrante, "cuadrante"),
       this.validarNumero(diente, "diente"),
@@ -30,13 +30,8 @@ class CN_detalleOdontograma {
       return { message: erroresFiltrados.join("\n"), id: 0 };
     }
 
-    // Validación adicional
-    if (!DNI || DNI.trim().length === 0) {
-      return { message: "Debe seleccionar algún paciente", id: 0 };
-    }
-
     // Si todas las validaciones son exitosas, procede a la creación
-    return await objCapaDato.createDetodont(DNI, tratamiento, cuadrante, diente, sector, estado, notas);
+    return await objCapaDato.createDetodont(CODIGO, tratamiento, cuadrante, diente, sector, estado, notas);
   }
   //CREAR
   async updateDetodont(id, tratamiento, cuadrante, diente, sector, estado, notas) {

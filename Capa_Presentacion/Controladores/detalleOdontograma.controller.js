@@ -15,8 +15,8 @@ export const listDetodont = async (req, res) => {
 // CREAR DETALLE ODONTOLOGICO
 export const createDetodont = async (req, res) => {
   try {
-    const { DNI, tratamiento, cuadrante, diente, sector, estado, notas } = req.body;
-    const result = await objCapaNegocio.createDetodont ( DNI, tratamiento, cuadrante, diente, sector, estado, notas);
+    const { CODIGO, tratamiento, cuadrante, diente, sector, estado, notas } = req.body;
+    const result = await objCapaNegocio.createDetodont ( CODIGO, tratamiento, cuadrante, diente, sector, estado, notas);
     res.status(201).json({ result });
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - " + error });
