@@ -51,7 +51,7 @@ export const deletePaciente = async (req, res) => {
     }
     res.status(204).json(result);
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP" });
+    return res.status(500).json({ message: "Algo salió mal en CP - " + error });
   }
 };
 

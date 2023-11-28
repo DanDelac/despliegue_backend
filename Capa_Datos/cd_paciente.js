@@ -49,7 +49,7 @@ class CD_Paciente {
     //ELIMINAR
     async deletePaciente(id) {
         var message = "";
-        var result;
+        var result = { affectedRows: 0 };
         try {
             [result] = await pool.query("call eliminar_paciente  (?);", [id]);
         } catch (error) {
@@ -57,10 +57,6 @@ class CD_Paciente {
             result.affectedRows = 0;
         }
         return { message: message, affectedRows: result.affectedRows};
-    }
-    //ELIMINAR
-    async deletePaciente(id) {
-        return await objCapaDato.deletePaciente(id);
     }
 }
 
