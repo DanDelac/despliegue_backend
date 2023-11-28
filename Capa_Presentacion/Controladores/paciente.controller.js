@@ -11,6 +11,7 @@ export const listPaciente = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - "+error });
   }
+  
 };
 // CREAR
 export const createPaciente = async (req, res) => {
