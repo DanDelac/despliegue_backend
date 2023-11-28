@@ -50,7 +50,7 @@ class CD_detalleOdontograma {
     //ELIMINAR
     async deleteDetodont(id) {
         var message = "";
-        var result;
+        var result = { affectedRows: 0 };
         try {
             [result] = await pool.query("call eliminar_detalle_odontograma (?);", [id]);
         } catch (error) {
