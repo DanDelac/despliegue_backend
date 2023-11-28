@@ -1,11 +1,11 @@
 import { pool } from "./Conexion DB/conection-db.js";
 class CD_Paciente {
     //LISTAR
-    async listPaciente() {
+    async listPaciente(ID) {
         var message = "";
         var rows;
         try {
-            [[rows]] = await pool.query("call listar_paciente();");
+            [[rows]] = await pool.query("call listar_paciente(?);",[ID]);
         } catch (error) {
             message = "Algo salió mal en CD - " + error;
             rows = [];
@@ -45,6 +45,22 @@ class CD_Paciente {
         }
     
         return { message: message, affectedRows: result.affectedRows };
+    }
+    //ELIMINAR
+    async deletePaciente(id) {
+        var message = "";
+        var result;
+        try {
+            [result] = await pool.query("call eliminar_paciente  (?);", [id]);
+        } catch (error) {
+            message = "Algo salió mal en CD - " +error ;
+            result.affectedRows = 0;
+        }
+        return { message: message, affectedRows: result.affectedRows};
+    }
+    //ELIMINAR
+    async deletePaciente(id) {
+        return await objCapaDato.deletePaciente(id);
     }
 }
 

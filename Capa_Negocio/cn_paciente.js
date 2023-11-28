@@ -7,8 +7,8 @@ class CN_PACIENTE {
   validarString = Validaciones.validarString;
   validarFechaFutura = Validaciones.validarFechaFutura;
   //LISTAR
-  async listPaciente() {
-    return await objCapaDato.listPaciente();
+  async listPaciente(ID) {
+    return await objCapaDato.listPaciente(ID);
   }
   //CREAR
   async createPaciente(NOMBRES, APELLIDOS, DNI, SEXO, RELIGION, RAZA, FECHA, LUGAR, RESIDENCIA, GRADO, OCUPACION, CIVIL, CORREO, TELEFONO, ESTADO, ECTOSCOPIA) {

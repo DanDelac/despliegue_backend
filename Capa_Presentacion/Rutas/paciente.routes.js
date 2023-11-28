@@ -14,7 +14,7 @@ router.post("/createPaciente", createPaciente);
 //Actualizar paciente
 router.patch("/updatePaciente/:id", updatePaciente);
 //Listar paciente
-router.get("/listPaciente/", listPaciente);
+router.get("/listPaciente/:ID", listPaciente);
 // DELETE paciente
 router.delete("deletePaciente/:id",deletePaciente);
 

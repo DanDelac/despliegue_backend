@@ -5,7 +5,8 @@ var objCapaNegocio = new CN_PACIENTE();
 //Listar
 export const listPaciente = async (req, res) => {
   try {
-    const respuesta = await objCapaNegocio.listPaciente();
+    const { ID } = req.params; 
+    const respuesta = await objCapaNegocio.listPaciente( ID );
     res.json(respuesta["rows"]);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - "+error });
@@ -43,6 +44,12 @@ export const updatePaciente = async (req, res) => {
 
 export const deletePaciente = async (req, res) => {
   try {
+    const { id } = req.params;
+    const result = await objCapaNegocio.deletePaciente(id);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: result.message });
+    }
+    res.status(204).json(result);
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP" });
   }
