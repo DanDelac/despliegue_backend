@@ -20,15 +20,16 @@ class CD_biologica {
         var result = { affectedRows: 0 };
         try {
             // Implementa la consulta SQL para crear una nueva cita en la base de datos
-            [result] = await pool.query(
+            [[[result]]] = await pool.query(
                 "CALL crear_biologica (?, ?, ?, ?, ?, ?)",
                 [DNI, APETITO, DEPOSICION, SED, ORINA, SUENO]
             );
+            result = { affectedRows: 1, row: result }
         } catch (error) {
-            message = "Algo salió mal en CD - " +error ;
-            result.insertId = 0;
+            message = "Algo salió mal en CD, Servidor: "+ error.message;
+            result.affectedRows = 0;
         }
-        return { message: message, affectedRows: result.affectedRows };
+        return { message: message, affectedRows: result.affectedRows, row: result.row };
     }
     // EDITAR
     async updatebiologica(CODIGO, APETITO, DEPOSICION, SED, ORINA, SUENO) {

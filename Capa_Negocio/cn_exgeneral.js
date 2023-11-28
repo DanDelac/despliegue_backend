@@ -8,7 +8,7 @@ class CN_exgeneral {
   validarString = validaciones.validarString;
   //LISTAR
   async listexgeneral(DNI) {
-    return await objCapaDato.listexgeneral(DNI);
+    return (await objCapaDato.listexgeneral(DNI)).rows;
   }
   //CREAR
   async createexgeneral(DNI, PESO, TALLA, BIOTIPO, PIEL, CABELLO, UNAS, PRESION, PULSO, FRECUENCIA, TEMPERATURA) {

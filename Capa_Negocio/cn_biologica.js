@@ -8,7 +8,7 @@ class CN_biologica {
   validarString = validaciones.validarString;
   //LISTAR
   async listbiologica(DNI) {
-    return await objCapaDato.listbiologica(DNI);
+    return (await objCapaDato.listbiologica(DNI)).rows;
   }
   //CREAR
   async createbiologica(DNI, APETITO, DEPOSICION, SED, ORINA, SUENO) {

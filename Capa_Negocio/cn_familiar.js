@@ -7,7 +7,7 @@ class CN_familiar {
   validarString = validaciones.validarString;
   //LISTAR
   async listFamiliar(DNI) {
-    return await objCapaDato.listFamiliar(DNI);
+    return (await objCapaDato.listFamiliar(DNI)).rows;
   }
   async createFamiliar(DNI, nombres, apellidos, DNIF, parentezco, ocupacion, correo, telefono) {
     // Validaciones

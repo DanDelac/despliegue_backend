@@ -8,7 +8,7 @@ class CN_antecedente {
   validarString = validaciones.validarString;
   //LISTAR
   async listantecedente(DNI) {
-    return await objCapaDato.listantecedente(DNI);
+    return (await objCapaDato.listantecedente(DNI)).rows;
   }
   //CREAR
   async createantecedente(DNI, personal, patologico, alergia, familiar) {

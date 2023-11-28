@@ -19,15 +19,16 @@ class CD_Paciente {
     
         try {
         // Implementa la consulta SQL para crear un nuevo familiar en la base de datos
-        [result] = await pool.query(
+        [[[result]]] = await pool.query(
             "CALL crear_paciente (?, ?, ?, ?, ?, ?,?,?, ?, ?, ?, ?, ?,?,?,?)",
             [NOMBRES, APELLIDOS, DNI, SEXO, RELIGION,RAZA,FECHA, LUGAR, RESIDENCIA, GRADO, OCUPACION, CIVIL, CORREO, TELEFONO, ESTADO, ECTOSCOPIA]
         );
-        } catch (error) {
-        message = "Algo salió mal en CD - " + error;
-        }
-    
-        return { message: message, affectedRows: result.affectedRows };
+        result = { affectedRows: 1, row: result }
+    } catch (error) {
+        message = "Algo salió mal en CD, Servidor: "+ error.message;
+        result.affectedRows = 0;
+    }
+    return { message: message, affectedRows: result.affectedRows, row: result.row };
     }
     // CREAR
     async updatePaciente(id,NOMBRES, APELLIDOS, DNI, SEXO, RELIGION,RAZA,FECHA, LUGAR, RESIDENCIA, GRADO, OCUPACION, CIVIL, CORREO, TELEFONO, ESTADO, ECTOSCOPIA) {

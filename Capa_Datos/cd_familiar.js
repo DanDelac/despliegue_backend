@@ -21,15 +21,16 @@ class CD_familiar {
     
         try {
         // Implementa la consulta SQL para crear un nuevo familiar en la base de datos
-        [result] = await pool.query(
+        [[[result]]] = await pool.query(
             "CALL crear_familiar (?, ?, ?, ?, ?, ?,?,?)",
             [DNI, nombres, apellidos, DNIF, parentezco, ocupacion, correo, telefono]
         );
-        } catch (error) {
-        message = "Algo salió mal en CD - " + error;
-        }
-    
-        return { message: message, affectedRows: result.affectedRows };
+        result = { affectedRows: 1, row: result }
+    } catch (error) {
+        message = "Algo salió mal en CD, Servidor: "+ error.message;
+        result.affectedRows = 0;
+    }
+    return { message: message, affectedRows: result.affectedRows, row: result.row };
     }
     // EDITAR
     async updateFamiliar(id,  nombres, apellidos, DNIF, parentezco, ocupacion, correo, telefono) {

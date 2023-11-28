@@ -9,7 +9,7 @@ class CN_odontograma {
   //LISTAR
   async listodontograma(DNI) {
     var resultado = await objCapaDato.listodontograma(DNI);
-    return await resultado;
+    return await resultado.rows;
   }
   //CREAR
   async createodontograma(DNI, FASE, ESPECIF, OBSERV) {

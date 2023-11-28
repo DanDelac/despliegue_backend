@@ -7,7 +7,7 @@ class CN_exintrabucal {
   validarString = validaciones.validarString;
   //LISTAR
   async listexintrabucal(DNI) {
-    return await objCapaDato.listexintrabucal(DNI);
+    return (await objCapaDato.listexintrabucal(DNI)).rows;
   }
   //CREAR
   async createexintrabucal(DNI, LABIOS, PALADAR, CARRILLO, PISO, LENGUA, OROFARINGE, FRENILLO, SALIVA) {

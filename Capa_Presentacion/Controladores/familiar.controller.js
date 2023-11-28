@@ -1,4 +1,4 @@
-import CN_Familiar from "../../Capa_Negocio/cn_familiar.js";
+ import CN_Familiar from "../../Capa_Negocio/cn_familiar.js";
 
 var objCapaNegocio = new CN_Familiar();
 
@@ -19,7 +19,7 @@ export const createFamiliar = async (req, res) => {
     const result = await objCapaNegocio.createFamiliar (  DNI, nombres, apellidos, DNIF, parentezco, ocupacion, correo, telefono );
     res.status(201).json({ result });
   } catch (error) {
-    return res.status(500).json({ message: "Algo salió mal en CP - "+error+"" });
+    return res.status(500).json({ message: "Algo salió mal en CP - " + error });
   }
 };
 
