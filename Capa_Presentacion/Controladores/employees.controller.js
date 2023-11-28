@@ -1,7 +1,7 @@
 // import { pool } from "../App_Start/db.js";
 import CN_Employee from "../../Capa_Negocio/cn_employee.js";
 
-export const index = (req, res) => res.json({ message: "welcome to my api" });
+export const index = (req, res) => res.json({ message: "welcome to my api BackEnd" });
 var objEmployee = new CN_Employee();
 
 //LISTAR E
