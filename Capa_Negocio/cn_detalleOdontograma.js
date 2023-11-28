@@ -8,7 +8,7 @@ class CN_detalleOdontograma {
   validarString = validaciones.validarString;
   //LISTAR
   async listDetodont(DNI) {
-    return (await objCapaDato.listDetodont(DNI)).rows;
+    return (await objCapaDato.listDetodont(DNI));
   }
   //CREAR
   async createDetodont(CODIGO, tratamiento, cuadrante, diente, sector, estado, notas) {

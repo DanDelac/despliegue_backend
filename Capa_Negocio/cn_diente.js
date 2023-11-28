@@ -8,7 +8,7 @@ class CN_diente {
   validarString = validaciones.validarString;
   //LISTAR
   async listdiente(DNI) {
-    return (await objCapaDato.listdiente(DNI)).rows;
+    return (await objCapaDato.listdiente(DNI));
   }
   //CREAR
   async creatediente(DNI, NUMERO, COLOR, FORMA, TAMANO, DIASTEMA, EDENTULA, POSANORMAL, FACDESGASTE, LINMEDIA, OTROS) {
