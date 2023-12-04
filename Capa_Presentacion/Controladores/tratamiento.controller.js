@@ -15,8 +15,8 @@ export const listTratamiento = async (req, res) => {
 //CREAR
 export const createTratamiento = async (req, res) => {
   try {
-    const { Tratamiento, tartDesc } = req.body;
-    const result = await objTratamiento.createTratamiento(Tratamiento, tartDesc);
+    const { Tratamiento, tratDesc, tratEstado } = req.body;
+    const result = await objTratamiento.createTratamiento(Tratamiento, tratDesc, tratEstado);
     res.status(201).json({ result });
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal en CP - " + error });
@@ -27,9 +27,9 @@ export const createTratamiento = async (req, res) => {
 export const updateTratamiento = async (req, res) => {
   try {
     const { IDTratamiento } = req.params;  //const IDTratamiento = req.params.IDTratamiento;
-    const { Tratamiento, tartDesc } = req.body;
+    const { Tratamiento, tratDesc, tratEstado } = req.body;
 
-    const result = await objTratamiento.updateTratamiento(IDTratamiento, Tratamiento, tartDesc);
+    const result = await objTratamiento.updateTratamiento(IDTratamiento, Tratamiento, tratDesc, tratEstado);
 
     if (result.affectedRows === 0)
       return res.status(404).json({ message: result.message });

@@ -10,47 +10,47 @@ class CN_Tratamiento {
     }
 
     //CREAR
-    async createTratamiento(Tratamiento, tartDesc) {
+    async createTratamiento(Tratamiento, tratDesc, tratEstado) {
         var message = "";
 
-        if (typeof Tratamiento !== "string" || typeof tartDesc !== "string") {
+        if (typeof Tratamiento !== "string" || typeof tratDesc !== "string") {
             if (typeof Tratamiento !== "string") {
                 message = "Error en el tipo de dato ingresado, el nombre del tratamiento debe ser un texto"
-            } else if (typeof tartDesc !== "string") {
+            } else if (typeof tratDesc !== "string") {
                 message = "Error en el tipo de dato ingresado, La descripcion debe ser un texto"
             }
         }
         else {
             if (!Tratamiento || Tratamiento.trim().length === 0) {
                 Mensaje = "El nombre del tratamiento no puede ser vacío";
-            } else if (!tartDesc || tartDesc == 0) {
+            } else if (!tratDesc || tratDesc == 0) {
                 Mensaje = "La descripcion del tratamiento no puede quedar vacío";
             }
         }
 
         if (!message) {
-            return await objCapaDato.createTratamiento(Tratamiento, tartDesc);
+            return await objCapaDato.createTratamiento(Tratamiento, tratDesc, tratEstado);
         }
         return { message: message, affectedRows: result.affectedRows = 0 };
     }
 
     //ACTUALIZAR
-    async updateTratamiento(IDTratamiento, Tratamiento, tartDesc) {
+    async updateTratamiento(IDTratamiento, Tratamiento, tratDesc, tratEstado) {
         var message = "";
 
-        if (typeof Tratamiento !== "string" || typeof tartDesc !== "string") {
+        if (typeof Tratamiento !== "string" || typeof tratDesc !== "string") {
             message = "Error en el tipo de dato ingresado"
         }
         else {
             if (!Tratamiento || Tratamiento.trim().length === 0) {
                 Mensaje = "El tratamiento no puede ser vacío";
-            } else if (!tartDesc || tartDesc == 0) {
+            } else if (!tratDesc || tratDesc == 0) {
                 Mensaje = "La descripcion del tratamiento no puede quedar vacío";
             }
         }
 
         if (!message) {
-            return await objCapaDato.updateTratamiento(IDTratamiento, Tratamiento, tartDesc);
+            return await objCapaDato.updateTratamiento(IDTratamiento, Tratamiento, tratDesc, tratEstado);
         }
         return { message: message, affectedRows: result.affectedRows = 0 };
     }

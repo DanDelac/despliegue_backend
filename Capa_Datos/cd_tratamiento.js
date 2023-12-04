@@ -18,29 +18,30 @@ class CD_Tratamientos {
     }
 
     //CREAR
-    async createTratamiento(Tratamiento, tartDesc) {
+    async createTratamiento(Tratamiento, tratDesc, tratEstado) {
         var message = "";
-        var result = { affectedRows: 0 };
+        var result = { affectedRows: 0, row: 0 };
         try {
             // codigo asincorno, consulta sql registrar empleados
-            [result] = await pool.query(
-                "CALL crear_tratamiento(?, ?)", [Tratamiento, tartDesc]);
-        } catch (error) {
-            message = "Algo salió mal en CD, Servidor: " + error.message;
-            result.affectedRows = 0;
+            [[[result]]] = await pool.query(
+                "CALL crear_tratamiento(?, ?,?)", [Tratamiento, tratDesc,tratEstado]);
+                result = { affectedRows: 1, row: result }
+            } catch (error) {
+                message = "Algo salió mal en CD, Servidor: " + error.message;
+                result.affectedRows = 0;
+            }
+            return { message: message, affectedRows: result.affectedRows, row: result.row };//row: 
         }
-        return { message: message, affectedRows: result.affectedRows };
-    }
 
     //ACTUALIZAR
-    async updateTratamiento(IDTratamiento, Tratamiento, tartDesc) {
+    async updateTratamiento(IDTratamiento, Tratamiento, tratDesc, tratEstado) {
         var message = "";
         var result = { affectedRows: 0 };
 
         try {
             [result] = await pool.query(
-                "CALL editar_tratamiento(?, ?,?)",
-                [IDTratamiento, Tratamiento, tartDesc]);
+                "CALL editar_tratamiento(?, ?,?,?)",
+                [IDTratamiento, Tratamiento, tratDesc, tratEstado]);
 
         } catch (error) {
             message = "Algo salió mal en CD, Servidor: " + error.message;

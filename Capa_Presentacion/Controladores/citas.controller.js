@@ -26,7 +26,7 @@ export const createCita = async (req, res) => {
 export const updateCita = async (req, res) => {
   try {
     const { IDCita } = req.params;  //const id = req.params.id;
-    console.log("ID: " + typeof (IDCita))
+    // console.log("ID: " + typeof (IDCita))
     const { IDMedico, citMotivo, citFecha, citHora, citEstado } = req.body;
 
     const result = await objCita.updateCita(IDCita, IDMedico, citMotivo, citFecha, citHora, citEstado);
